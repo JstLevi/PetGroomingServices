@@ -9,7 +9,7 @@ export default function TabsLayout() {
   const router = useRouter();
     const Login = () => {
         router.replace("/login")
-        }
+    }
 
 
   return (
@@ -36,7 +36,7 @@ export default function TabsLayout() {
 
         
         <Tabs.Screen 
-            name="logout"
+            name="exit"
             options={{
                 title:"Exit",
                 tabBarIcon: ({color, size}) => (
