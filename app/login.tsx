@@ -1,23 +1,22 @@
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, } from 'react-native'
 import React from 'react'
-import { Feather, FontAwesome } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 import { Link } from 'expo-router'
 import { useRouter } from "expo-router";
 
-const sign_up = () => {
+const login = () => {
 
   const router = useRouter();
-    const movetoLogin = () => {
-      router.replace("/login")
-    }
-
+  const handleLogin = () => {
+    router.replace("/(tabs)/home")
+  }
 
   return (
     <View style={styles.container}>
+      
 
-
-      <View style={styles.signup_container}>
-        <Text style={styles.signupText}>Sign Up</Text>
+      <View style={styles.login_container}>
+        <Text style={styles.loginText}>Log In</Text>
         <View style={styles.underline}></View>
       </View>
 
@@ -29,27 +28,10 @@ const sign_up = () => {
       </View>
 
 
-      <View style={styles.UsernameContainerText}>
-        <Text style={styles.UsernameText}>Username</Text>
-      </View>
-
-      <View style={styles.usernameInputContainer}>
-        <Feather 
-        name='user'
-        size= {30}
-        color="292D32"
-        style={styles.usernameIcon}
-        />
-        <TextInput
-        style={styles.username}
-        placeholder="Enter Username"
-        />
-      </View>
-
 
 
       <View style={styles.EmailContainerText}>
-        <Text style={styles.EmailText}>Email Address</Text>
+        <Text style={styles.EmailText}>Username/Email Address</Text>
       </View>
 
       <View style={styles.EmailInputContainer}>
@@ -61,7 +43,7 @@ const sign_up = () => {
         />
         <TextInput
         style={styles.EmailAddress}
-        placeholder="Enter Email Address"
+        placeholder="Enter Username/Email Address"
         keyboardType='email-address'
         />
       </View>
@@ -87,38 +69,28 @@ const sign_up = () => {
       </View>
 
 
-      <View style={styles.ConfirmpasswordContainerText}>
-        <Text style={styles.ConfirmpasswordText}>Confirm Password</Text>
-      </View>
+      
 
-      <View style={styles.ConfirmpasswordInputContainer}>
-        <Feather 
-        name='lock'
-        size= {30}
-        color="292D32"
-        style={styles.ConfirmpasswordIcon}
-        />
-        <TextInput
-        style={styles.Confirmpassword}
-        placeholder="Re-enter Password"
-        secureTextEntry={true}
-        />
-      </View>
+     
 
-      <TouchableOpacity style={styles.signupBotton} onPress={movetoLogin}>
-        <Text style={styles.signupTextBotton}>Sign Up</Text>
+      <TouchableOpacity style={styles.loginBotton} onPress={handleLogin}>
+        <Text style={styles.loginTextBotton}>Log In</Text>
       </TouchableOpacity>
 
 
-      <View style={styles.noticesignupContainer}> 
-        <Text style={styles.noticesignup}> Already have an Account?
-        <Link href="/login">
-        <Text style={styles.proceedLogin}> Log in</Text>
+      <View style={styles.noticeloginContainer}> 
+        <Text style={styles.noticelogin}> Don't have an Account?
+        <Link href="/sign_up">
+        <Text style={styles.proceedSignup}> Sign up</Text>
         </Link>
         </Text> 
         
      </View>
 
+
+
+
+    
 
 
       
@@ -132,10 +104,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  signup_container: {
+
+  login_container: {
     //blank
   },
-  signupText: {
+  loginText: {
+    marginTop: 50,
     textAlign: "center",
     fontSize: 50,
     fontWeight: "500",
@@ -172,33 +146,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
 
   },
-  usernameInputContainer: {
-    //blank
-    backgroundColor: "white",
-    flexDirection: "row",
-    alignItems: "center",
-    alignSelf: "center",
-    width: 376,
-    height: 56,
-    borderRadius: 12,
-    elevation: 9,
-    borderWidth:1,
-  },
-  usernameIcon: {
-    marginLeft: 11,
-    marginRight: 9,
-
-  },
-  username:{
-    width: 320,
-    //backgroundColor: "blue"
-  },
-
-
+  
 
 
   EmailContainerText: {
-    marginTop: 20,
+    marginTop: 60,
   },
 
   EmailText: {
@@ -260,38 +212,8 @@ const styles = StyleSheet.create({
 
 
 
-  ConfirmpasswordContainerText: {
-    marginTop: 20,
-  },
 
-  ConfirmpasswordText: {
-    marginHorizontal: 20,
-  },
-
-  ConfirmpasswordInputContainer: {
-    backgroundColor: "white",
-    flexDirection: "row",
-    alignItems: "center",
-    alignSelf: "center",
-    width: 376,
-    height: 56,
-    borderRadius: 12,
-    elevation: 9,
-    borderWidth:1,  
-  },
-
-  ConfirmpasswordIcon: {
-    marginLeft: 11,
-    marginRight: 9,
-
-  },
-  Confirmpassword:{
-    width: 320,
-    //backgroundColor: "blue"
-  },
-
-
-  signupBotton: {
+  loginBotton: {
     backgroundColor: "#4A90E2",
     marginHorizontal: 40,
     borderRadius: 11,
@@ -299,7 +221,7 @@ const styles = StyleSheet.create({
     
 
   },
-  signupTextBotton: {
+  loginTextBotton: {
     textAlign: "center",
     fontSize: 24,
     paddingVertical: 10,
@@ -308,16 +230,16 @@ const styles = StyleSheet.create({
   },
 
 
-  noticesignupContainer: {
+  noticeloginContainer: {
     alignItems: "center",
     paddingVertical: 20,
 
   },
-  noticesignup: {
+  noticelogin: {
 
   },
 
-  proceedLogin: {
+  proceedSignup: {
     color: "#4A90E2",
     fontWeight: "bold",
   },
@@ -328,4 +250,5 @@ const styles = StyleSheet.create({
 })
 
 
-export default sign_up
+
+export default login
