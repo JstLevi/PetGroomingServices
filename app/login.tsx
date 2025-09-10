@@ -1,8 +1,10 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, } from 'react-native'
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, ImageBackground} from 'react-native'
 import React from 'react'
 import { Feather } from '@expo/vector-icons'
 import { Link } from 'expo-router'
 import { useRouter } from "expo-router";
+import { useFonts, LuckiestGuy_400Regular } from '@expo-google-fonts/luckiest-guy'
+
 
 const login = () => {
 
@@ -11,32 +13,39 @@ const login = () => {
     router.replace("/(tabs)/home")
   }
 
+  const [fontsLoaded] = useFonts({
+      LuckiestGuy: LuckiestGuy_400Regular,
+    })
+  
+    if (!fontsLoaded) {
+      return <View><Text>Loading...</Text></View>
+  }
+  
+
   return (
-    <View style={styles.container}>
+    <ImageBackground source={require("../assets/images/pawpatterns.png")} 
+      style={styles.container}
+      >
       
-
-      <View style={styles.login_container}>
-        <Text style={styles.loginText}>Log In</Text>
-        <View style={styles.underline}></View>
+      {/* Logo + Title */}
+      <View style={styles.logo_container}>
+        <Image source={require("../assets/images/logo.png")}width={208} height={193} />
+          <View style={{ position: "relative" }}>
+            <Text style={[styles.logoText, styles.textOutline]}>HAPPY PAWS</Text>
+            <Text style={styles.logoText}>HAPPY PAWS</Text>
+          </View>
+        <View style={[styles.underline, styles.underlineOutline]} />
+        <View style={styles.underline} />
       </View>
 
-      <View style={styles.cat_dogContainer}>
-        <Image
-        source={require("../assets/images/vector.png")}
-        style={styles.catdogImage}
-        />
-      </View>
 
-
-
-
-      <View style={styles.EmailContainerText}>
-        <Text style={styles.EmailText}>Username/Email Address</Text>
+      <View style={styles.UsernameEmailContainerText}>
+        <Text style={styles.UsernameEmailText}>Username/Email Address</Text>
       </View>
 
       <View style={styles.EmailInputContainer}>
         <Feather 
-        name='mail'
+        name='user'
         size= {30}
         color="292D32"
         style={styles.EmailIcon}
@@ -69,10 +78,6 @@ const login = () => {
       </View>
 
 
-      
-
-     
-
       <TouchableOpacity style={styles.loginBotton} onPress={handleLogin}>
         <Text style={styles.loginTextBotton}>Log In</Text>
       </TouchableOpacity>
@@ -83,67 +88,80 @@ const login = () => {
         <Link href="/sign_up">
         <Text style={styles.proceedSignup}> Sign up</Text>
         </Link>
-        </Text> 
+        </Text>
+      </View> 
         
-     </View>
-
-
   
 
       
-    </View>
+    </ImageBackground>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
     flex: 1,
+    backgroundColor: "#143470",
+    justifyContent: "center",
+    
   },
 
 
-  login_container: {
-    //blank
+  logo_container: {
+    position: "fixed",
+    alignItems: "center",
+    marginBottom: 70,
   },
-  loginText: {
-    marginTop: 50,
-    textAlign: "center",
-    fontSize: 50,
-    fontWeight: "500",
-    fontFamily: "poppins",
-    color: "#1E3A8A",
+
+
+  logoText: {
+    color: "white",
+    fontSize: 40,
+    fontFamily: "LuckiestGuy",
+    marginTop: -50,
+    elevation: 10,
+    textShadowColor: "rgba(0, 0, 0, 1)",
+    textShadowOffset: { width: 2, height: 3 }, 
+    textShadowRadius: 2,
   },
+
+  textOutline: {
+  position: "absolute",
+  left: 2,
+  top: 2,
+  color: "black",
+ },
+
+
   underline: {
-    width: 250,     
+    width: 280,     
     height: 4,   
-    backgroundColor: "#1E3A8A", 
-    marginTop: 4,   
+    backgroundColor: "#fcfcfcff",   
     alignSelf: "center",
+    marginTop: -8, // overlap the outline
+    
   },
 
-  cat_dogContainer: {
-    backgroundColor: "#1E3A8A",
-    marginTop: 35, 
-    width: 377,
-    height: 121,
+  underlineOutline: {
+    width: 290,  
+    height: 4,  
+    backgroundColor: "black",
     alignSelf: "center",
-    borderRadius: 10,
-  },
-  catdogImage: {
-    alignSelf: "center",
-    marginTop: -30,
+    borderRadius: 12,
+     marginTop: 8, // overlap the outline
   },
 
 
-  UsernameContainerText: {
+
+  UsernameEmailContainerText: {
     //blank
-    marginTop: 10,
   },
-  UsernameText: {
+
+  UsernameEmailText: {
     marginHorizontal: 20,
+    color: "white"
 
   },
-  
 
 
   EmailContainerText: {
@@ -152,8 +170,10 @@ const styles = StyleSheet.create({
 
   EmailText: {
     marginHorizontal: 20,
+    color: "white",
 
   },
+
   EmailInputContainer: {
     backgroundColor: "white",
     flexDirection: "row",
@@ -183,6 +203,7 @@ const styles = StyleSheet.create({
 
   passwordText: {
     marginHorizontal: 20,
+    color: "white",
   },
 
   passwordInputContainer: {
@@ -206,8 +227,6 @@ const styles = StyleSheet.create({
     width: 320,
     //backgroundColor: "blue"
   },
-
-
 
 
   loginBotton: {

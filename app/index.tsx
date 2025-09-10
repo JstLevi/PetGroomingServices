@@ -1,11 +1,20 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import { Link } from 'expo-router'
+import { useFonts, LuckiestGuy_400Regular } from '@expo-google-fonts/luckiest-guy'
 
 
 const Index = () => {
 
-  
+   // Load the font
+  const [fontsLoaded] = useFonts({
+    LuckiestGuy: LuckiestGuy_400Regular,
+  })
+
+  if (!fontsLoaded) {
+    return <View><Text>Loading...</Text></View>
+  }
+
 
   return (
 
@@ -16,8 +25,9 @@ const Index = () => {
 
 
     <View style={styles.welcomeCont}>
-      <Text style={styles.welcomeTitle}> Welcome to Pet Grooming Services App</Text>
-      <Text style={styles.welcomeSubtitle}>Happy Pet, Happy Owner</Text>
+      <Text style={styles.welcomeTo}>Welcome to..</Text>
+      <Text style={styles.welcomeTitle}>Happy Paw</Text>
+      <Text style={styles.welcomeSubtitle}>Happy Pet Happy Owner</Text>
     </View>
 
 
@@ -48,31 +58,41 @@ const styles = StyleSheet.create({
     backgroundColor: '#00000073'
   },*/
 
+ 
 
   welcomeCont: {
-    marginTop: 120,
+    marginTop: 150,
     paddingHorizontal: 20,
+  },
+
+   welcomeTo: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: "medium",
+    textAlign: "center",
+    opacity: 0.8,
   },
 
   welcomeTitle: {
     color: "white",
-    fontSize: 36,
-    fontWeight: "bold",
+    fontSize: 50,
+    fontFamily: "LuckiestGuy",
     textAlign: "center",
+    marginTop: 1,
   },
 
   welcomeSubtitle: {
     color: "white",
     fontSize: 20,
     textAlign: "center",
-    marginTop: 12,
+    marginTop: 1,
     opacity: 0.9,
   },
 
 
   get_start_cont: {
     position: "absolute",
-    bottom: 80, // distance from bottom
+    bottom: 80, 
     alignSelf: "center",
     backgroundColor: "#d87505ff",
     borderRadius: 10,
