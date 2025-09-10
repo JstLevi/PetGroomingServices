@@ -88,10 +88,7 @@ const login = () => {
      </View>
 
 
-
-
-    
-
+  
 
       
     </View>

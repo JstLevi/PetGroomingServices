@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
 
   signup_container: {
     //blank
+    marginTop: 50,
   },
   signupText: {
     textAlign: "center",

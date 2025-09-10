@@ -43,12 +43,9 @@ export default function TabsLayout() {
                     <Ionicons name="log-out-outline" size={size} color={color} />
                 ),
 
-                tabBarButton: ({children, style, accessibilityState}) => (
-                    <TouchableOpacity
-                    onPress={Login} 
-                    style={style}
-                    accessibilityState={accessibilityState}>
-                        {children}
+                tabBarButton: ({children, style}) => (
+                    <TouchableOpacity  onPress={Login}    style={style}>
+                    {children}
                     </TouchableOpacity> 
 
                 ),
