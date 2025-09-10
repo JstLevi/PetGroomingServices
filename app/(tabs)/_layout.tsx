@@ -7,7 +7,7 @@ import { useRouter } from "expo-router";
 export default function TabsLayout() {
 
   const router = useRouter();
-    const movetoLogin = () => {
+    const Login = () => {
         router.replace("/login")
         }
 
@@ -38,13 +38,18 @@ export default function TabsLayout() {
         <Tabs.Screen 
             name="logout"
             options={{
-                title: "Exit",
+                title:"Exit",
                 tabBarIcon: ({color, size}) => (
                     <Ionicons name="log-out-outline" size={size} color={color} />
                 ),
 
-                tabBarButton: (props) => (
-                    <TouchableOpacity {...props} onPress={movetoLogin} />
+                tabBarButton: ({children, style, accessibilityState}) => (
+                    <TouchableOpacity
+                    onPress={Login} 
+                    style={style}
+                    accessibilityState={accessibilityState}>
+                        {children}
+                    </TouchableOpacity> 
 
                 ),
                 
