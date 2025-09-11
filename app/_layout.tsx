@@ -5,7 +5,7 @@ export default function RootLayout() {
   <Stack initialRouteName="login" screenOptions={{headerShown: false}}>
     <Stack.Screen name="index" />
     <Stack.Screen name="login" />
-    <Stack.Screen name="signup" />
+    <Stack.Screen name="sign_up" />
   </Stack>
   );
 }

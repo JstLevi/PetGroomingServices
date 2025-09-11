@@ -1,14 +1,20 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, ImageBackground} from 'react-native'
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, ImageBackground, } from 'react-native'
 import React from 'react'
 import { Feather } from '@expo/vector-icons'
 import { Link } from 'expo-router'
 import { useRouter } from "expo-router";
 import { useFonts, LuckiestGuy_400Regular } from '@expo-google-fonts/luckiest-guy'
+import { useState } from "react";
+
 
 
 const login = () => {
 
   const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleLogin = () => {
     router.replace("/(tabs)/home")
   }
@@ -17,8 +23,8 @@ const login = () => {
       LuckiestGuy: LuckiestGuy_400Regular,
     })
   
-    if (!fontsLoaded) {
-      return <View><Text>Loading...</Text></View>
+  if (!fontsLoaded) {
+    return <View><Text>Loading...</Text></View>
   }
   
 
@@ -39,60 +45,54 @@ const login = () => {
       </View>
 
 
-      <View style={styles.UsernameEmailContainerText}>
-        <Text style={styles.UsernameEmailText}>Username/Email Address</Text>
-      </View>
-
-      <View style={styles.EmailInputContainer}>
-        <Feather 
-        name='user'
-        size= {30}
-        color="292D32"
-        style={styles.EmailIcon}
-        />
+      {/* Email */}
+      <Text style={styles.label}>Username / Email</Text>
+      <View style={styles.inputContainer}>
+        <Feather name="user" size={24} color="#666" />
         <TextInput
-        style={styles.EmailAddress}
-        placeholder="Enter Username/Email Address"
-        keyboardType='email-address'
+          style={styles.input}
+          placeholder="Enter your email"
+          placeholderTextColor="#999"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
         />
       </View>
 
-
-
-      <View style={styles.passwordContainerText}>
-        <Text style={styles.passwordText}>Enter Password</Text>
-      </View>
-
-      <View style={styles.passwordInputContainer}>
-        <Feather 
-        name='lock'
-        size= {30}
-        color="292D32"
-        style={styles.passwordIcon}
-        />
+      {/* Password */}
+      <Text style={styles.label}>Password</Text>
+      <View style={styles.inputContainer}>
+        <Feather name="lock" size={24} color="#666" />
         <TextInput
-        style={styles.password}
-        placeholder="Enter Password"
-        secureTextEntry={true}
+          style={styles.input}
+          placeholder="Enter password"
+          placeholderTextColor="#999"
+          secureTextEntry={!showPassword}
+          value={password}
+          onChangeText={setPassword}
         />
+        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+          <Feather name={showPassword ? "eye-off" : "eye"} size={22} color="#666" />
+        </TouchableOpacity>
       </View>
 
-
-      <TouchableOpacity style={styles.loginBotton} onPress={handleLogin}>
-        <Text style={styles.loginTextBotton}>Log In</Text>
+      {/* Forgot Password */}
+      <TouchableOpacity style={{ alignSelf: "flex-end", marginRight: 25, marginTop: 5 }}>
+        <Text style={styles.forgotPassword}>Forgot Password?</Text>
       </TouchableOpacity>
 
+      {/* Login Button */}
+      <TouchableOpacity style={styles.loginButton} onPress={handleLogin} activeOpacity={0.8}>
+        <Text style={styles.loginText}>Log In</Text>
+      </TouchableOpacity>
 
-      <View style={styles.noticeloginContainer}> 
-        <Text style={styles.noticelogin}> Don't have an Account?
+      {/* Sign Up */}
+      <View style={styles.footer}>
+        <Text style={{ color: "#fff" }}>Don’t have an account?</Text>
         <Link href="/sign_up">
-        <Text style={styles.proceedSignup}> Sign up</Text>
+          <Text style={styles.signUp}> Sign Up</Text>
         </Link>
-        </Text>
-      </View> 
-        
-  
-
+      </View>
       
     </ImageBackground>
   )
@@ -103,12 +103,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#143470",
     justifyContent: "center",
+    paddingHorizontal: 20,
     
   },
 
 
   logo_container: {
-    position: "fixed",
     alignItems: "center",
     marginBottom: 70,
   },
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     elevation: 10,
     textShadowColor: "rgba(0, 0, 0, 1)",
     textShadowOffset: { width: 2, height: 3 }, 
-    textShadowRadius: 2,
+    textShadowRadius: 3,
   },
 
   textOutline: {
@@ -134,133 +134,72 @@ const styles = StyleSheet.create({
 
 
   underline: {
-    width: 280,     
+    width: "70%",     
     height: 4,   
     backgroundColor: "#fcfcfcff",   
-    alignSelf: "center",
-    marginTop: -8, // overlap the outline
+    marginTop: -7.5, 
+    borderRadius: 2,
     
   },
 
   underlineOutline: {
-    width: 290,  
+    width: "69%",  
     height: 4,  
-    backgroundColor: "black",
-    alignSelf: "center",
+    backgroundColor: "#000000be",
     borderRadius: 12,
-     marginTop: 8, // overlap the outline
+    marginTop: 8, 
   },
 
 
-
-  UsernameEmailContainerText: {
-    //blank
-  },
-
-  UsernameEmailText: {
-    marginHorizontal: 20,
-    color: "white"
-
-  },
-
-
-  EmailContainerText: {
-    marginTop: 60,
-  },
-
-  EmailText: {
-    marginHorizontal: 20,
+  label: {
     color: "white",
-
+    fontWeight: "500",
+    marginBottom: 5,
   },
-
-  EmailInputContainer: {
-    backgroundColor: "white",
+  inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    alignSelf: "center",
-    width: 376,
-    height: 56,
+    backgroundColor: "white",
     borderRadius: 12,
-    elevation: 9,
-    borderWidth:1,
+    paddingHorizontal: 12,
+    height: 50,
+    marginBottom: 15,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
   },
-  EmailIcon: {
-    marginLeft: 11,
-    marginRight: 9,
-
+  input: {
+    flex: 1,
+    marginLeft: 8,
   },
-  EmailAddress:{
-    width: 320,
-    //backgroundColor: "blue"
+  forgotPassword: {
+    color: "#4A90E2",
+    fontSize: 14,
+    marginBottom: 20,
   },
-
-
-
-  passwordContainerText: {
+  loginButton: {
+    backgroundColor: "#4269B4",
+    borderRadius: 12,
     marginTop: 20,
+    paddingVertical: 12,
+    alignItems: "center",
   },
-
-  passwordText: {
-    marginHorizontal: 20,
+  loginText: {
     color: "white",
+    fontSize: 20,
+    fontWeight: "600",
   },
-
-  passwordInputContainer: {
-    backgroundColor: "white",
+  footer: {
     flexDirection: "row",
-    alignItems: "center",
-    alignSelf: "center",
-    width: 376,
-    height: 56,
-    borderRadius: 12,
-    elevation: 9,
-    borderWidth:1,  
+    justifyContent: "center",
+    marginTop: 25,
   },
-
-  passwordIcon: {
-    marginLeft: 11,
-    marginRight: 9,
-
-  },
-  password:{
-    width: 320,
-    //backgroundColor: "blue"
-  },
-
-
-  loginBotton: {
-    backgroundColor: "#4A90E2",
-    marginHorizontal: 40,
-    borderRadius: 11,
-    marginTop: 50,
-    
-
-  },
-  loginTextBotton: {
-    textAlign: "center",
-    fontSize: 24,
-    paddingVertical: 10,
-    color: "white",
-    fontWeight: "400",
-  },
-
-
-  noticeloginContainer: {
-    alignItems: "center",
-    paddingVertical: 20,
-
-  },
-  noticelogin: {
-
-  },
-
-  proceedSignup: {
+  signUp: {
     color: "#4A90E2",
     fontWeight: "bold",
   },
   
-
 
 
 })
