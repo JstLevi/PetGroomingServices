@@ -126,8 +126,8 @@ const styles = StyleSheet.create({
   },
 
   textOutline: {
-  left: 2,
-  top: 2,
+  right: 2,
+  top: 15,
   color: "black",
  },
 
