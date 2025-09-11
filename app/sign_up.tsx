@@ -133,11 +133,11 @@ const styles = StyleSheet.create({
   },
 
   textOutline: {
-  position: "absolute",
-  left: 2,
-  top: 2,
-  color: "black",
- },
+
+    left: 2,
+    top: 2,
+    color: "black",
+  }, 
 
   underline: {
     width: "70%",     

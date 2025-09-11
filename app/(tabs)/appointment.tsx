@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const logout = () => {
+const appointment = () => {
   return (
     <View>
-      <Text></Text>
+      <Text>appointment</Text>
     </View>
   )
 }
 
-export default logout
+export default appointment

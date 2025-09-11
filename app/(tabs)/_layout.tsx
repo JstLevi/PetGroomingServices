@@ -13,7 +13,7 @@ export default function TabsLayout() {
 
 
   return (
-    <Tabs>
+    <Tabs initialRouteName="home">
         <Tabs.Screen 
             name="home"
             options={{
@@ -33,27 +33,6 @@ export default function TabsLayout() {
                 )
             }}
         />
-
-        
-        <Tabs.Screen 
-            name="exit"
-            options={{
-                title:"Exit",
-                tabBarIcon: ({color, size}) => (
-                    <Ionicons name="log-out-outline" size={size} color={color} />
-                ),
-
-                tabBarButton: ({children, style}) => (
-                    <TouchableOpacity  onPress={Login}    style={style}>
-                    {children}
-                    </TouchableOpacity> 
-
-                ),
-                
-            }}
-
-        />
-
 
 
     </Tabs>
