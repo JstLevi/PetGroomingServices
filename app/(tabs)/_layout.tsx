@@ -13,11 +13,11 @@ export default function TabsLayout() {
 
 
   return (
-    <Tabs initialRouteName="home">
+    <Tabs>
         <Tabs.Screen 
             name="home"
             options={{
-                title: "Home",
+                title: "HOME",
                 tabBarIcon: ({color, size}) => (
                     <Ionicons name="home-outline" size={size} color={color} />
                 )
@@ -25,14 +25,50 @@ export default function TabsLayout() {
         />
 
         <Tabs.Screen 
+            name="booking"
+            options={{
+                title: "BOOKING",
+                tabBarIcon: ({color, size}) => (
+                    <Ionicons name="calendar-outline" size={size} color={color} />
+                )
+            }}
+        />
+
+        <Tabs.Screen 
+            name="services"
+            options={{
+                title: "SERVICES",
+                tabBarIcon: ({color, size}) => (
+                    <Ionicons name="paw-outline" size={size} color={color} />
+                )
+            }}
+        />
+
+        <Tabs.Screen 
+            name="appointment"
+            options={{
+                title: "APPOINTMENT",
+                tabBarIcon: ({color, size}) => (
+                    <Ionicons name="clipboard-outline" size={size} color={color} />
+                )
+            }}
+        />
+
+        <Tabs.Screen 
             name="settings"
             options={{
-                title: "Settings",
+                title: "SETTINGS",
                 tabBarIcon: ({color, size}) => (
                     <Ionicons name="settings-outline" size={size} color={color} />
                 )
             }}
         />
+
+        
+
+
+
+
 
 
     </Tabs>
