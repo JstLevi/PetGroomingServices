@@ -6,30 +6,30 @@ import { Feather } from "@expo/vector-icons";
 export default function TabsLayout() {
   return (
     <Tabs
-      screenOptions={{
-        tabBarStyle: {
-          backgroundColor: "#FF8C00", // orange color
-          position: "absolute",
-          bottom: 40,
-          left: 20,
-          right: 20,
-          borderRadius: 15,
-          height: 70,
-          marginHorizontal: 10,
-          paddingTop: 10,
-          elevation: 5, // Android shadow
-          shadowColor: "#000", // iOS shadow
-          shadowOpacity: 0.1,
-          shadowRadius: 3,
-        },
-        tabBarActiveTintColor: "#fff", // active icon/text color
-        tabBarInactiveTintColor: "#a5550aff", // inactive icon/text color
-        headerShown: false,
-        tabBarLabelStyle: {
-          fontSize: 9,
-          fontWeight: "500",
-        },
-      }}
+    screenOptions={{
+      tabBarStyle: {
+        backgroundColor: "#FF8C00",
+        flex: 1,
+        position: "absolute",   
+        bottom: 40,
+        borderRadius: 10,
+        height: 50,
+        marginHorizontal: 15,
+        paddingTop: 0,
+        elevation: 5,
+        shadowColor: "#000",
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+      },
+      tabBarLabelStyle: {
+        fontSize: 9,
+        fontWeight: "500",
+      },
+      tabBarActiveTintColor: "#fff",
+      tabBarInactiveTintColor: "#a5550aff",
+      headerShown: false,
+    }}
+
     >
       <Tabs.Screen
         name="home"
