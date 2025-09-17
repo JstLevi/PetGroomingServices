@@ -1,12 +1,16 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { Feather } from "@expo/vector-icons";
+import { Pressable, PressableProps } from "react-native";
 
 
 export default function TabsLayout() {
   return (
     <Tabs
     screenOptions={{
+      tabBarActiveTintColor: "#fff",
+      tabBarInactiveTintColor: "#a5550aff",
+      headerShown: false,
       tabBarStyle: {
         backgroundColor: "#FF8C00",
         flex: 1,
@@ -25,9 +29,10 @@ export default function TabsLayout() {
         fontSize: 9,
         fontWeight: "500",
       },
-      tabBarActiveTintColor: "#fff",
-      tabBarInactiveTintColor: "#a5550aff",
-      headerShown: false,
+      tabBarButton: (props: PressableProps) => (
+      <Pressable {...props} android_ripple={{ color: "transparent" }} />
+      ),
+      
     }}
 
     >

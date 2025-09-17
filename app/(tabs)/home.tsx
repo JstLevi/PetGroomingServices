@@ -1,60 +1,74 @@
-import React from 'react';
-import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet, Dimensions, ImageBackground } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useFonts, LuckiestGuy_400Regular } from '@expo-google-fonts/luckiest-guy';
-
-const { width } = Dimensions.get('window');
+import React from "react";
+import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet, ImageBackground,} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useFonts, LuckiestGuy_400Regular,} from "@expo-google-fonts/luckiest-guy";
 
 const Home = () => {
-  // Load the Luckiest Guy font
-  let [fontsLoaded, fontError] = useFonts({
-    LuckiestGuy: LuckiestGuy_400Regular,
-  });
-
-  if (!fontsLoaded && !fontError) {
-    return null; // Or a loading indicator
-  }
+  const [fontsLoaded] = useFonts({
+        LuckiestGuy: LuckiestGuy_400Regular,
+      })
+    
+    if (!fontsLoaded) {
+      return <View><Text>Loading...</Text></View>
+    }
 
   // Sample data for services
   const services = [
-    { id: 1, name: 'Basic Grooming', icon: 'cut', price: '$35' },
-    { id: 2, name: 'Flea & Tick Treatment', icon: 'bug', price: '$65' },
-    { id: 3, name: 'Nail Trimming', icon: 'paw', price: '$15' },
-    { id: 4, name: 'Teeth Cleaning', icon: 'medical', price: '$25' },
+    { id: 1, name: "Basic Grooming", icon: "cut", price: "₱350" },
+    { id: 2, name: "Flea & Tick Treatment", icon: "bug", price: "₱650" },
+    { id: 3, name: "Nail Trimming", icon: "paw", price: "₱150" },
+    { id: 4, name: "Teeth Cleaning", icon: "medical", price: "₱250" },
   ];
 
   // Sample data for appointments
   const appointments = [
-    { id: 1, pet: 'Max (Golden Retriever)', service: 'Full Spa', date: 'Sept 15, 2023', time: '10:00 AM' },
-    { id: 2, pet: 'Bella (Poodle)', service: 'Basic Grooming', date: 'Sept 16, 2023', time: '2:30 PM' },
-    { id: 3, pet: 'Charlie (Shiba Inu)', service: 'Nail Trimming', date: 'Sept 17, 2023', time: '4:00 PM' },
+    
+    {
+      id: 1,
+      pet: "Bella (Poodle)",
+      service: "Basic Grooming",
+      date: "Sept 16, 2023",
+      time: "2:30 PM",
+    },
+    {
+      id: 2,
+      pet: "Charlie (Shiba Inu)",
+      service: "Nail Trimming",
+      date: "Sept 17, 2023",
+      time: "4:00 PM",
+    },
   ];
 
   return (
-    <ImageBackground 
-      source={require('../../assets/images/homebg.jpg')} 
+    <ImageBackground
+      source={require("../../assets/images/homebg.jpg")}
       style={styles.backgroundImage}
       resizeMode="cover"
     >
       <View style={styles.container}>
         {/* Header with logo, title and notification icon */}
         <View style={styles.header}>
-          <Image 
-            source={require('../../assets/images/smalllogo.png')} 
+          <Image
+            source={require("../../assets/images/smalllogo.png")}
             style={styles.logo}
-            resizeMode="contain"
           />
-          <Text style={[styles.pageTitle, fontsLoaded && { fontFamily: 'LuckiestGuy' }]}>HOME</Text>
+          <Text
+            style={styles.pageTitle}>HOME</Text>
           <TouchableOpacity style={styles.notificationIcon}>
-            <Ionicons name="notifications-outline" size={24} color="#4A90E2" />
+            <Ionicons name="notifications-outline" size={24} color="#ffffffff" />
           </TouchableOpacity>
         </View>
 
-        <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.scrollView}
+        >
           {/* Promo Card */}
           <View style={styles.promoCard}>
             <Text style={styles.promoTitle}>SPECIAL OFFER</Text>
-            <Text style={styles.promoText}>Get 20% off on your first grooming session!</Text>
+            <Text style={styles.promoText}>
+              Get 20% off on your first grooming session!
+            </Text>
             <TouchableOpacity style={styles.promoButton}>
               <Text style={styles.promoButtonText}>Book Now</Text>
             </TouchableOpacity>
@@ -62,10 +76,15 @@ const Home = () => {
 
           {/* Popular Services */}
           <Text style={styles.sectionTitle}>Popular Services</Text>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.servicesContainer}>
-            {services.map(service => (
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.servicesContainer}
+          >
+            {services.map((service) => (
               <View key={service.id} style={styles.serviceCard}>
                 <View style={styles.serviceIcon}>
+                  {/* Casting to "any" avoids TS redline */}
                   <Ionicons name={service.icon as any} size={28} color="#4A90E2" />
                 </View>
                 <Text style={styles.serviceName}>{service.name}</Text>
@@ -77,12 +96,14 @@ const Home = () => {
           {/* Appointments */}
           <Text style={styles.sectionTitle}>Appointments</Text>
           <View style={styles.appointmentsTable}>
-            {appointments.map(appointment => (
+            {appointments.map((appointment) => (
               <View key={appointment.id} style={styles.appointmentRow}>
                 <View style={styles.appointmentDetails}>
                   <Text style={styles.petName}>{appointment.pet}</Text>
                   <Text style={styles.serviceName}>{appointment.service}</Text>
-                  <Text style={styles.appointmentTime}>{appointment.date} • {appointment.time}</Text>
+                  <Text style={styles.appointmentTime}>
+                    {appointment.date} • {appointment.time}
+                  </Text>
                 </View>
                 <TouchableOpacity style={styles.viewButton}>
                   <Text style={styles.viewButtonText}>View</Text>
@@ -99,8 +120,8 @@ const Home = () => {
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   container: {
     flex: 1,
@@ -109,90 +130,93 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingTop: 50,
-    paddingBottom: 16,
-    backgroundColor: '#143470',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 25,
+    paddingTop: 40,
+    paddingBottom: 5,
+    backgroundColor: "#143470",
     borderBottomWidth: 1,
-    borderBottomColor: '#eaeaea',
-    position: 'relative',
+    borderBottomColor: "#eaeaea",
+    position: "relative",
   },
   logo: {
-    width: 120,
-    height: 40,
+    width: 80,
+    height: 60,
+    resizeMode: "contain", // keeps aspect ratio
+
   },
   pageTitle: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
+    top: 50,
     right: 0,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 28,
-    color: '#4A90E2',
-    zIndex: -1,
+    color: "#ffffffff",
+    fontFamily: "LuckiestGuy"
   },
   notificationIcon: {
     padding: 8,
   },
   promoCard: {
-    backgroundColor: '#4A90E2',
+    backgroundColor: "#4A90E2",
     margin: 16,
     padding: 20,
     borderRadius: 12,
     elevation: 3,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
   promoTitle: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff',
+    fontWeight: "bold",
+    color: "#fff",
     marginBottom: 4,
     letterSpacing: 1,
   },
   promoText: {
     fontSize: 18,
-    color: '#fff',
+    color: "#fff",
     marginBottom: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   promoButton: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 20,
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
   },
   promoButtonText: {
-    color: '#4A90E2',
-    fontWeight: 'bold',
+    color: "#4A90E2",
+    fontWeight: "bold",
   },
   sectionTitle: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginHorizontal: 16,
     marginVertical: 16,
-    color: '#2c3e50',
+    color: "#2c3e50",
   },
   servicesContainer: {
     paddingLeft: 16,
     marginBottom: 16,
   },
   serviceCard: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     width: 140,
     height: 160,
     borderRadius: 12,
     marginRight: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 16,
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
@@ -201,37 +225,37 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: '#e8f4ff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#e8f4ff",
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 12,
   },
   serviceName: {
     fontSize: 14,
-    fontWeight: '600',
-    textAlign: 'center',
-    color: '#2c3e50',
+    fontWeight: "600",
+    textAlign: "center",
+    color: "#2c3e50",
     marginBottom: 4,
   },
   servicePrice: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#4A90E2',
+    fontWeight: "bold",
+    color: "#4A90E2",
   },
   appointmentsTable: {
     marginHorizontal: 16,
     marginBottom: 30,
   },
   appointmentRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#fff",
     padding: 16,
     borderRadius: 12,
     marginBottom: 12,
     elevation: 2,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
@@ -241,24 +265,24 @@ const styles = StyleSheet.create({
   },
   petName: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#2c3e50',
+    fontWeight: "bold",
+    color: "#2c3e50",
     marginBottom: 4,
   },
   appointmentTime: {
     fontSize: 14,
-    color: '#7f8c8d',
+    color: "#7f8c8d",
     marginTop: 4,
   },
   viewButton: {
-    backgroundColor: '#e8f4ff',
+    backgroundColor: "#e8f4ff",
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 20,
   },
   viewButtonText: {
-    color: '#4A90E2',
-    fontWeight: '600',
+    color: "#4A90E2",
+    fontWeight: "600",
   },
 });
 
