@@ -84,20 +84,20 @@ const handleLogout = () => {
             }}
           />
           <Tabs.Screen
-            name="services"
-            options={{
-              title: "Services",
-              tabBarIcon: ({ color, size }) => (
-                <Feather name="scissors" size={size} color={color} />
-              ),
-            }}
-          />
-          <Tabs.Screen
             name="booking"
             options={{
               title: "Booking",
               tabBarIcon: ({ color, size }) => (
                 <Ionicons name="calendar-outline" size={size} color={color} />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="services"
+            options={{
+              title: "Services",
+              tabBarIcon: ({ color, size }) => (
+                <Feather name="scissors" size={size} color={color} />
               ),
             }}
           />
