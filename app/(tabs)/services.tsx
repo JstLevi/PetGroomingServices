@@ -79,7 +79,7 @@ export default function Services() {
         style={styles.button}
         onPress={() => setSelectedService(item)}
       >
-        <Text style={styles.buttonText}>Select</Text>
+        <Text style={styles.buttonText}>Book Now</Text>
       </TouchableOpacity>
     </View>
   );

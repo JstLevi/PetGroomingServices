@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
   servicePrice: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#4A90E2",
+    color: "#FF8C00",
   },
   appointmentsTable: {
     marginHorizontal: 16,
