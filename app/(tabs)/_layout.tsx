@@ -3,12 +3,22 @@ import { Tabs } from "expo-router";
 import { Pressable, Animated, View, Text, TouchableOpacity, StyleSheet, TouchableWithoutFeedback, Dimensions } from "react-native";
 import React, { useRef, useEffect } from "react";
 import { useMenu, MenuProvider } from "../MenuContext";
+import { useRouter } from "expo-router";
+
 
 const { width } = Dimensions.get("window");
+
+
 
 function AnimatedTabs() {
   const { menuVisible, toggleMenu } = useMenu();
   const anim = useRef(new Animated.Value(0)).current;
+  const router = useRouter();
+
+
+const handleLogout = () => {
+    router.replace("/login")
+  }
 
   // Animate content shift when menu opens
   useEffect(() => {
@@ -33,6 +43,9 @@ function AnimatedTabs() {
     inputRange: [0, 1],
     outputRange: [width, 0],
   });
+
+
+
 
   return (
     <View style={{ flex: 1 }}>
@@ -132,7 +145,7 @@ function AnimatedTabs() {
           <TouchableOpacity>
             <Text style={styles.menuItem}>Settings</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleLogout}>
             <Text style={[styles.menuItem, { color: "red" }]}>Log Out</Text>
           </TouchableOpacity>
         </View>
