@@ -46,7 +46,7 @@ const login = () => {
 
 
       {/* Email */}
-      <Text style={styles.label}>Username / Email</Text>
+
       <View style={styles.inputContainer}>
         <Feather name="user" size={24} color="#666" />
         <TextInput
@@ -60,7 +60,7 @@ const login = () => {
       </View>
 
       {/* Password */}
-      <Text style={styles.label}>Password</Text>
+    
       <View style={styles.inputContainer}>
         <Feather name="lock" size={24} color="#666" />
         <TextInput
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 40,
     fontFamily: "LuckiestGuy",
-    marginTop: -50,
+    marginTop: -45,
     elevation: 10,
     textShadowColor: "rgba(0, 0, 0, 1)",
     textShadowOffset: { width: 2, height: 3 }, 
@@ -150,11 +150,6 @@ const styles = StyleSheet.create({
   },
 
 
-  label: {
-    color: "white",
-    fontWeight: "500",
-    marginBottom: 5,
-  },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -162,12 +157,13 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 12,
     height: 50,
-    marginBottom: 15,
+    marginBottom: 40,
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,
   },
+  
   input: {
     flex: 1,
     marginLeft: 8,
@@ -176,6 +172,7 @@ const styles = StyleSheet.create({
     color: "#4A90E2",
     fontSize: 14,
     marginBottom: 20,
+    marginTop: -30,
   },
   loginButton: {
     backgroundColor: "#4269B4",

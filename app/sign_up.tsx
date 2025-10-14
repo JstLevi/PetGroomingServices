@@ -29,9 +29,7 @@ const SignUp = () => {
       </View>
 
       {/* Username */}
-      <View style={styles.inputLabel}>
-        <Text style={styles.labelText}>Username</Text>
-      </View>
+   
       <View style={styles.inputContainer}>
         <Feather name="user" size={22} color="#4A5568" />
         <TextInput
@@ -42,9 +40,7 @@ const SignUp = () => {
       </View>
 
       {/* Email */}
-      <View style={styles.inputLabel}>
-        <Text style={styles.labelText}>Email Address</Text>
-      </View>
+
       <View style={styles.inputContainer}>
         <Feather name="mail" size={22} color="#4A5568" />
         <TextInput
@@ -56,9 +52,7 @@ const SignUp = () => {
       </View>
 
       {/* Password */}
-      <View style={styles.inputLabel}>
-        <Text style={styles.labelText}>Password</Text>
-      </View>
+
       <View style={styles.inputContainer}>
         <Feather name="lock" size={22} color="#4A5568" />
         <TextInput
@@ -73,9 +67,7 @@ const SignUp = () => {
       </View>
 
       {/* Confirm Password */}
-      <View style={styles.inputLabel}>
-        <Text style={styles.labelText}>Confirm Password</Text>
-      </View>
+
       <View style={styles.inputContainer}>
         <Feather name="lock" size={22} color="#4A5568" />
         <TextInput
@@ -126,7 +118,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 40,
     fontFamily: "LuckiestGuy",
-    marginTop: -50,
+    marginTop: -45,
     elevation: 10,
     textShadowColor: "rgba(0, 0, 0, 1)",
     textShadowOffset: { width: 2, height: 3 }, 
@@ -157,14 +149,7 @@ const styles = StyleSheet.create({
     marginTop: 8, 
   },
 
-  inputLabel: {
-    marginTop: 18,
-  },
-  labelText: {
-    fontSize: 14,
-    fontWeight: "500",
-    color: "#ffffffff",
-  },
+
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -174,7 +159,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 12,
     height: 55,
-    marginTop: 6,
+    marginTop: 10,
+    marginBottom: 20,
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowRadius: 4,
