@@ -265,13 +265,13 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   viewButton: {
-    backgroundColor: "#e8f4ff",
-    paddingVertical: 8,
+    backgroundColor: "#FF8C00",
+    paddingVertical: 5,
     paddingHorizontal: 16,
-    borderRadius: 20,
+    borderRadius: 5,
   },
   viewButtonText: {
-    color: "#4A90E2",
+    color: "#ffffffff",
     fontWeight: "600",
   },
 });
