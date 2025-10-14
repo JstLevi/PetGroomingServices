@@ -83,7 +83,7 @@ const SignUp = () => {
 
       {/* Signup Button */}
       <TouchableOpacity style={styles.signupButton} onPress={movetoLogin}>
-        <Text style={styles.signupButtonText}>Sign Up</Text>
+        <Text style={styles.signupButtonText}>Create Account</Text>
       </TouchableOpacity>
 
       {/* Redirect to Login */}
