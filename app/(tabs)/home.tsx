@@ -48,14 +48,11 @@ const Home = () => {
       <View style={styles.container}>
         {/* Header with logo, title and notification icon */}
         <View style={styles.header}>
-          <Image
-            source={require("../../assets/images/smalllogo.png")}
-            style={styles.logo}
-          />
           <Text
-            style={styles.pageTitle}>HOME</Text>
+            style={styles.pageTitle}>HOME
+          </Text>
           <TouchableOpacity style={styles.notificationIcon}>
-            <Ionicons name="notifications-outline" size={24} color="#ffffffff" />
+            <Ionicons name="notifications" size={26} color="#ffffffff" />
           </TouchableOpacity>
         </View>
 
@@ -133,33 +130,26 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 25,
-    paddingTop: 40,
-    paddingBottom: 5,
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    paddingBottom: 12,
     backgroundColor: "#143470",
-    borderBottomWidth: 1,
-    borderBottomColor: "#eaeaea",
-    position: "relative",
   },
-  logo: {
-    width: 80,
-    height: 60,
-    resizeMode: "contain", // keeps aspect ratio
 
-  },
   pageTitle: {
-    position: "absolute",
-    left: 0,
-    top: 50,
-    right: 0,
-    textAlign: "center",
     fontSize: 28,
     color: "#ffffffff",
-    fontFamily: "LuckiestGuy"
+    fontFamily: "LuckiestGuy",
+    textShadowColor: "rgba(0, 0, 0, 1)",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 1,
+    letterSpacing: 1,
   },
+
   notificationIcon: {
     padding: 8,
   },
+
   promoCard: {
     backgroundColor: "#4A90E2",
     margin: 16,

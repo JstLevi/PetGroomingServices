@@ -67,14 +67,9 @@ export default function AppointmentScreen() {
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Image
-          source={require("../../assets/images/smalllogo.png")}
-          style={styles.logo}
-          resizeMode="contain"
-        />
         <Text style={styles.pageTitle}>APPOINTMENTS</Text>
         <TouchableOpacity style={styles.notificationIcon}>
-          <Ionicons name="notifications-outline" size={24} color="#fff" />
+          <Ionicons name="notifications" size={26} color="#fff" />
         </TouchableOpacity>
       </View>
 
@@ -113,29 +108,22 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 25,
-    paddingTop: 40,
-    paddingBottom: 5,
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    paddingBottom: 12,
     backgroundColor: "#143470",
-    borderBottomColor: "#eaeaea",
-    borderBottomWidth: 1,
-    position: "relative",
   },
-  logo: {
-    width: 80,
-    height: 60,
-    resizeMode: "contain",
-  },
+
   pageTitle: {
-    position: "absolute",
-    left: 0,
-    top: 50,
-    right: 0,
-    textAlign: "center",
     fontSize: 28,
     color: "#fff",
     fontFamily: "LuckiestGuy",
+    textShadowColor: "rgba(0, 0, 0, 1)",
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 1,
+    letterSpacing: 1,
   },
+
   notificationIcon: {
     padding: 8,
   },
