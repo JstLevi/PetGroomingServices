@@ -70,7 +70,14 @@ const handleLogout = () => {
               fontWeight: "500",
             },
             tabBarButton: (props) => (
-              <Pressable {...props} android_ripple={{ color: "transparent" }} />
+              <Pressable
+                onPress={props.onPress}
+                onLongPress={props.onLongPress}
+                style={props.style}
+                android_ripple={{ color: "transparent" }}
+              >
+                {props.children}
+              </Pressable>
             ),
           }}
         >

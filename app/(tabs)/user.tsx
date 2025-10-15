@@ -1,16 +1,11 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import {  View, Text, StyleSheet, Image, TouchableOpacity, ScrollView,} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useMenu } from "../MenuContext";
+import { useRouter } from "expo-router";
 
 export default function ProfileScreen() {
+  const router = useRouter();
   const { toggleMenu } = useMenu();
 
   return (
@@ -20,7 +15,7 @@ export default function ProfileScreen() {
         <View style={styles.header}>
           <Text style={styles.pageTitle}>PROFILE</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <TouchableOpacity style={styles.notificationIcon}>
+            <TouchableOpacity style={styles.notificationIcon} onPress={() => router.push("/notification")}>
               <Ionicons name="notifications" size={26} color="#fff" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.menuIcon} onPress={toggleMenu}>
@@ -47,15 +42,26 @@ export default function ProfileScreen() {
           <Text style={styles.sectionTitle}>My Pets</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.petCard}>
+              <Image
+                source={require("../../assets/images/dog1.jpg")}
+                style={styles.petImage}
+              />
               <Text style={styles.petName}>Buddy</Text>
               <Text style={styles.petBreed}>Golden Retriever</Text>
             </View>
+
             <View style={styles.petCard}>
+              <Image
+                source={require("../../assets/images/cat1.jpg")}
+                style={styles.petImage}
+              />
               <Text style={styles.petName}>Mochi</Text>
               <Text style={styles.petBreed}>Persian Cat</Text>
             </View>
+
             <TouchableOpacity style={styles.addPetBtn}>
-              <Text style={styles.addText}>+ Add Pet</Text>
+              <Ionicons name="add-circle-outline" size={30} color="#333" />
+              <Text style={styles.addText}>Add Pet</Text>
             </TouchableOpacity>
           </ScrollView>
         </View>
@@ -82,6 +88,44 @@ export default function ProfileScreen() {
             <Text style={styles.dateSmall}>Last updated: Oct 1, 2025</Text>
           </View>
         </View>
+
+        {/* MY PHOTOS SECTION */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>My Photos</Text>
+          <View style={styles.photoContainer}>
+            <View style={styles.photoGrid}>
+              <Image
+                source={require("../../assets/images/cat2.jpg")}
+                style={styles.photoFrame}
+              />
+              <Image
+                source={require("../../assets/images/dog1.jpg")}
+                style={styles.photoFrame}
+              />
+              <Image
+                source={require("../../assets/images/cat1.jpg")}
+                style={styles.photoFrame}
+              />
+              <Image
+                source={require("../../assets/images/cat3.jpg")}
+                style={styles.photoFrame}
+              />
+              <Image
+                source={require("../../assets/images/cat5.jpg")}
+                style={styles.photoFrame}
+              />
+              <Image
+                source={require("../../assets/images/dog4.jpg")}
+                style={styles.photoFrame}
+              />
+
+              {/* ADD PHOTO BUTTON */}
+              <TouchableOpacity style={styles.addPhotoBox}>
+                <Ionicons name="add" size={40} color="#999" />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
       </ScrollView>
     </View>
   );
@@ -89,6 +133,7 @@ export default function ProfileScreen() {
 
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: "#FFF8E7" },
+
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -98,6 +143,7 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
     backgroundColor: "#143470",
   },
+
   pageTitle: {
     fontSize: 28,
     color: "#fff",
@@ -107,22 +153,27 @@ const styles = StyleSheet.create({
     textShadowRadius: 1,
     letterSpacing: 1,
   },
+
   notificationIcon: { padding: 5 },
   menuIcon: { padding: 5 },
+
   profile: {
     alignItems: "center",
     marginTop: 25,
     marginBottom: 20,
     paddingHorizontal: 20,
   },
+
   avatar: {
     width: 120,
     height: 120,
     borderRadius: 60,
     marginBottom: 10,
   },
+
   name: { fontSize: 20, fontWeight: "700" },
   email: { color: "#777" },
+
   editBtn: {
     backgroundColor: "#FFA726",
     paddingVertical: 8,
@@ -130,27 +181,42 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
   },
+
   editText: { color: "#fff", fontWeight: "600" },
+
   section: { paddingHorizontal: 20, marginBottom: 25 },
   sectionTitle: { fontSize: 18, fontWeight: "700", marginBottom: 10 },
+
   petCard: {
     backgroundColor: "#fff",
     borderRadius: 12,
     padding: 10,
     marginRight: 10,
-    width: 120,
+    width: 130,
     alignItems: "center",
   },
-  petName: { fontWeight: "700", marginTop: 5 },
+
+  petImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    marginBottom: 6,
+  },
+
+  petName: { fontWeight: "700", marginTop: 3 },
   petBreed: { fontSize: 12, color: "#777" },
+
   addPetBtn: {
     backgroundColor: "#FFD180",
     borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",
     width: 120,
+    marginRight: 10,
   },
+
   addText: { color: "#333", fontWeight: "600" },
+
   bookingCard: {
     backgroundColor: "#fff",
     borderRadius: 12,
@@ -159,8 +225,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     elevation: 2,
   },
+
   service: { fontWeight: "700", fontSize: 16 },
   date: { color: "#555", marginVertical: 5 },
+
   viewBtn: {
     alignSelf: "flex-end",
     backgroundColor: "#FFA726",
@@ -168,7 +236,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderRadius: 6,
   },
+
   viewText: { color: "#fff", fontSize: 12, fontWeight: "600" },
+
   feedbackCard: {
     backgroundColor: "#fff",
     borderRadius: 12,
@@ -177,6 +247,50 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     elevation: 2,
   },
+
   feedbackText: { fontStyle: "italic", color: "#444" },
   dateSmall: { fontSize: 12, color: "#888", marginTop: 5 },
+
+  // MY PHOTOS SECTION
+  photoContainer: {
+    backgroundColor: "#EAE5DA",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+
+  photoGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    gap: 8,
+  },
+
+  photoFrame: {
+    width: "48%",
+    aspectRatio: 1,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#bbb",
+    backgroundColor: "#fff",
+    marginBottom: 8,
+  },
+
+  addPhotoBox: {
+    width: "48%",
+    aspectRatio: 1,
+    borderRadius: 8,
+    borderWidth: 1.5,
+    borderColor: "#bbb",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f9f9f9",
+    marginBottom: 8,
+  },
 });

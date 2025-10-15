@@ -2,8 +2,10 @@ import React from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet, ImageBackground,} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts, LuckiestGuy_400Regular,} from "@expo-google-fonts/luckiest-guy";
+import { useRouter } from "expo-router";
 
 const Home = () => {
+  const router = useRouter();
   const [fontsLoaded] = useFonts({
         LuckiestGuy: LuckiestGuy_400Regular,
       })
@@ -51,9 +53,11 @@ const Home = () => {
           <Text
             style={styles.pageTitle}>HOME
           </Text>
-          <TouchableOpacity style={styles.notificationIcon}>
+          <TouchableOpacity style={styles.notificationIcon} onPress={() => router.push("/notification")}>
             <Ionicons name="notifications" size={26} color="#ffffffff" />
           </TouchableOpacity>
+                    
+
         </View>
 
         <ScrollView

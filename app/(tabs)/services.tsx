@@ -3,6 +3,7 @@ import { useState } from "react";
 import { View,  Text, StyleSheet, Image, TouchableOpacity, FlatList, Modal, ImageSourcePropType,} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts, LuckiestGuy_400Regular,} from "@expo-google-fonts/luckiest-guy";
+import { useRouter } from "expo-router";
 
 // Type definition for a service
 type Service = {
@@ -60,6 +61,7 @@ const services: Service[] = [
 ];
 
 export default function Services() {
+  const router = useRouter();
   
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
@@ -89,8 +91,8 @@ export default function Services() {
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.pageTitle}>SERVICES</Text>
-        <TouchableOpacity style={styles.notificationIcon}>
-          <Ionicons name="notifications-outline" size={26} color="#fff" />
+        <TouchableOpacity style={styles.notificationIcon} onPress={() => router.push("/notification")}>
+          <Ionicons name="notifications" size={26} color="#fff" />
         </TouchableOpacity>
       </View>
 

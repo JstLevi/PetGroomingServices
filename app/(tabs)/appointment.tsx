@@ -2,6 +2,7 @@ import React from "react";
 import {View,Text,StyleSheet, FlatList, Image, TouchableOpacity,} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
+import { useRouter } from "expo-router";
 
 type Appointment = {
   id: string;
@@ -36,6 +37,7 @@ const appointments: Appointment[] = [
 ];
 
 export default function AppointmentScreen() {
+  const router = useRouter();
   const [fontsLoaded] = useFonts({
     LuckiestGuy_400Regular,
   });
@@ -68,7 +70,7 @@ export default function AppointmentScreen() {
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.pageTitle}>APPOINTMENTS</Text>
-        <TouchableOpacity style={styles.notificationIcon}>
+        <TouchableOpacity style={styles.notificationIcon} onPress={() => router.push("/notification")}>
           <Ionicons name="notifications" size={26} color="#fff" />
         </TouchableOpacity>
       </View>

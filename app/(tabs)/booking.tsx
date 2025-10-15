@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
+import { useRouter } from "expo-router";
 
 export default function Booking() {
+  const router = useRouter();
   const [fontsLoaded] = useFonts({
     LuckiestGuy_400Regular,
   });
@@ -26,7 +28,7 @@ export default function Booking() {
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.pageTitle}>BOOKING</Text>
-        <TouchableOpacity style={styles.notificationIcon}>
+        <TouchableOpacity style={styles.notificationIcon} onPress={() => router.push("/notification")}>
           <Ionicons name="notifications" size={26} color="#fff" />
         </TouchableOpacity>
       </View>
