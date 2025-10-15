@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 3,
     elevation: 4,
-    height: 450,
+    height: 420,
   },
 
   photoGrid: {
