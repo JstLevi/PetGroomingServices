@@ -1,5 +1,12 @@
 import React from "react";
-import {  View, Text, StyleSheet, Image, TouchableOpacity, ScrollView,} from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useMenu } from "../MenuContext";
 import { useRouter } from "expo-router";
@@ -15,7 +22,10 @@ export default function ProfileScreen() {
         <View style={styles.header}>
           <Text style={styles.pageTitle}>PROFILE</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <TouchableOpacity style={styles.notificationIcon} onPress={() => router.push("/notification")}>
+            <TouchableOpacity
+              style={styles.notificationIcon}
+              onPress={() => router.push("/notification")}
+            >
               <Ionicons name="notifications" size={26} color="#fff" />
             </TouchableOpacity>
             <TouchableOpacity style={styles.menuIcon} onPress={toggleMenu}>
@@ -92,38 +102,38 @@ export default function ProfileScreen() {
         {/* MY PHOTOS SECTION */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>My Photos</Text>
-          <View style={styles.photoContainer}>
+          <View style={styles.photoFrameContainer}>
             <View style={styles.photoGrid}>
               <Image
                 source={require("../../assets/images/cat2.jpg")}
-                style={styles.photoFrame}
+                style={styles.photoItem}
               />
               <Image
                 source={require("../../assets/images/dog1.jpg")}
-                style={styles.photoFrame}
+                style={styles.photoItem}
               />
               <Image
                 source={require("../../assets/images/cat1.jpg")}
-                style={styles.photoFrame}
+                style={styles.photoItem}
               />
               <Image
                 source={require("../../assets/images/cat3.jpg")}
-                style={styles.photoFrame}
+                style={styles.photoItem}
               />
               <Image
                 source={require("../../assets/images/cat5.jpg")}
-                style={styles.photoFrame}
+                style={styles.photoItem}
               />
               <Image
                 source={require("../../assets/images/dog4.jpg")}
-                style={styles.photoFrame}
+                style={styles.photoItem}
               />
-
-              {/* ADD PHOTO BUTTON */}
-              <TouchableOpacity style={styles.addPhotoBox}>
-                <Ionicons name="add" size={40} color="#999" />
-              </TouchableOpacity>
             </View>
+
+            {/* Add Photo Button */}
+            <TouchableOpacity style={styles.addPhotoBox}>
+              <Ionicons name="add" size={40} color="#999" />
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -251,46 +261,47 @@ const styles = StyleSheet.create({
   feedbackText: { fontStyle: "italic", color: "#444" },
   dateSmall: { fontSize: 12, color: "#888", marginTop: 5 },
 
-  // MY PHOTOS SECTION
-  photoContainer: {
-    backgroundColor: "#EAE5DA",
-    borderRadius: 10,
+  /** --- MY PHOTOS --- **/
+  photoFrameContainer: {
+    backgroundColor: "#D6D1C9", // similar to your sample beige-gray
     borderWidth: 1,
-    borderColor: "#ccc",
-    padding: 10,
+    borderColor: "#555",
+    padding: 5,
+    borderRadius: 6,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
     elevation: 4,
+    height: 450,
   },
 
   photoGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    gap: 8,
   },
 
-  photoFrame: {
-    width: "48%",
+  photoItem: {
+    width: "32%",
     aspectRatio: 1,
-    borderRadius: 8,
+    marginBottom: 5,
+    resizeMode: "cover",
     borderWidth: 1,
-    borderColor: "#bbb",
-    backgroundColor: "#fff",
-    marginBottom: 8,
+    borderColor: "#333",
   },
 
   addPhotoBox: {
-    width: "48%",
-    aspectRatio: 1,
-    borderRadius: 8,
+    marginTop: 2,
     borderWidth: 1.5,
-    borderColor: "#bbb",
+    borderColor: "#777",
+    borderStyle: "dashed",
+    borderRadius: 6,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f9f9f9",
-    marginBottom: 8,
+    height: 100,
+    width:"32%",
+    backgroundColor: "#f7f7f7",
   },
 });
+
