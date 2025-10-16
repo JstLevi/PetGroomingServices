@@ -1,5 +1,5 @@
 import React from "react";
-import {View,Text,StyleSheet, FlatList, Image, TouchableOpacity,} from "react-native";
+import {View,Text,StyleSheet, FlatList, TouchableOpacity, ImageBackground} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useRouter } from "expo-router";
@@ -66,44 +66,55 @@ export default function AppointmentScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.pageTitle}>APPOINTMENTS</Text>
-        <TouchableOpacity style={styles.notificationIcon} onPress={() => router.push("/notification")}>
-          <Ionicons name="notifications" size={26} color="#fff" />
-        </TouchableOpacity>
-      </View>
+    <ImageBackground
+      source={require("../../assets/images/background.png")}
+      style={styles.backgroundImage}
+      resizeMode="cover"
+    >
+      <View style={styles.container}>
+        {/* Header */}
+        <View style={styles.header}>
+          <Text style={styles.pageTitle}>APPOINTMENTS</Text>
+          <TouchableOpacity style={styles.notificationIcon} onPress={() => router.push("/notification")}>
+            <Ionicons name="notifications" size={26} color="#fff" />
+          </TouchableOpacity>
+        </View>
 
-      {/* Appointment List */}
-      <FlatList
-        data={appointments}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={{ padding: 16 }}
-        renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Text style={styles.petName}>{item.pet}</Text>
-            <Text style={styles.text}>Service: {item.service}</Text>
-            <Text style={styles.text}>Date: {item.date}</Text>
+        {/* Appointment List */}
+        <FlatList
+          data={appointments}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={{ padding: 16 }}
+          renderItem={({ item }) => (
+            <View style={styles.card}>
+              <Text style={styles.petName}>{item.pet}</Text>
+              <Text style={styles.text}>Service: {item.service}</Text>
+              <Text style={styles.text}>Date: {item.date}</Text>
 
-            {/* Status Badge */}
-            <View style={[styles.statusBadge, renderStatusColor(item.status)]}>
-              <Text style={styles.statusText}>{item.status}</Text>
+              {/* Status Badge */}
+              <View style={[styles.statusBadge, renderStatusColor(item.status)]}>
+                <Text style={styles.statusText}>{item.status}</Text>
+              </View>
             </View>
-          </View>
-        )}
-        ListEmptyComponent={
-          <Text style={styles.empty}>No appointments yet. Book now!</Text>
-        }
-      />
-    </View>
+          )}
+          ListEmptyComponent={
+            <Text style={styles.empty}>No appointments yet. Book now!</Text>
+          }
+        />
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+  },
+
   container: {
     flex: 1,
-    backgroundColor: "#FDEFD0",
   },
 
   header: {

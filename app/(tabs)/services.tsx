@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { View,  Text, StyleSheet, Image, TouchableOpacity, FlatList, Modal, ImageSourcePropType,} from "react-native";
+import { View,  Text, StyleSheet, Image, TouchableOpacity, FlatList, Modal, ImageSourcePropType, ImageBackground} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useFonts, LuckiestGuy_400Regular,} from "@expo-google-fonts/luckiest-guy";
 import { useRouter } from "expo-router";
@@ -87,66 +87,77 @@ export default function Services() {
   );
 
   return (
-    <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.pageTitle}>SERVICES</Text>
-        <TouchableOpacity style={styles.notificationIcon} onPress={() => router.push("/notification")}>
-          <Ionicons name="notifications" size={26} color="#fff" />
-        </TouchableOpacity>
-      </View>
-
-      {/* List of Services */}
-      <FlatList
-        data={services}
-        renderItem={renderService}
-        keyExtractor={(item) => item.id}
-        numColumns={2}
-        columnWrapperStyle={{ justifyContent: "space-between" }}
-        contentContainerStyle={{ padding: 15, paddingBottom: 100 }}
-      />
-
-      {/* Modal for Service Details */}
-      <Modal
-        visible={!!selectedService}
-        transparent
-        animationType="slide"
-        onRequestClose={() => setSelectedService(null)}
+    <ImageBackground
+      source={require("../../assets/images/background.png")}
+      style={styles.backgroundImage}
+      resizeMode="cover"
       >
-        <View style={styles.modalBackground}>
-          <View style={styles.modalContent}>
-            {selectedService && (
-              <>
-                <Image
-                  source={selectedService.image}
-                  style={styles.modalImage}
-                />
-                <Text style={styles.modalTitle}>{selectedService.name}</Text>
-                <Text style={styles.modalDesc}>
-                  {selectedService.description}
-                </Text>
-                <Text style={styles.modalPrice}>
-                  Price: {selectedService.price}
-                </Text>
-                <TouchableOpacity
-                  style={styles.closeButton}
-                  onPress={() => setSelectedService(null)}
-                >
-                  <Text style={styles.closeButtonText}>Book Now</Text>
-                </TouchableOpacity>
-              </>
-            )}
-          </View>
+      <View style={styles.container}>
+        {/* Header */}
+        <View style={styles.header}>
+          <Text style={styles.pageTitle}>SERVICES</Text>
+          <TouchableOpacity style={styles.notificationIcon} onPress={() => router.push("/notification")}>
+            <Ionicons name="notifications" size={26} color="#fff" />
+          </TouchableOpacity>
         </View>
-      </Modal>
-    </View>
+
+        {/* List of Services */}
+        <FlatList
+          data={services}
+          renderItem={renderService}
+          keyExtractor={(item) => item.id}
+          numColumns={2}
+          columnWrapperStyle={{ justifyContent: "space-between" }}
+          contentContainerStyle={{ padding: 15, paddingBottom: 100 }}
+        />
+
+        {/* Modal for Service Details */}
+        <Modal
+          visible={!!selectedService}
+          transparent
+          animationType="slide"
+          onRequestClose={() => setSelectedService(null)}
+        >
+          <View style={styles.modalBackground}>
+            <View style={styles.modalContent}>
+              {selectedService && (
+                <>
+                  <Image
+                    source={selectedService.image}
+                    style={styles.modalImage}
+                  />
+                  <Text style={styles.modalTitle}>{selectedService.name}</Text>
+                  <Text style={styles.modalDesc}>
+                    {selectedService.description}
+                  </Text>
+                  <Text style={styles.modalPrice}>
+                    Price: {selectedService.price}
+                  </Text>
+                  <TouchableOpacity
+                    style={styles.closeButton}
+                    onPress={() => setSelectedService(null)}
+                  >
+                    <Text style={styles.closeButtonText}>Book Now</Text>
+                  </TouchableOpacity>
+                </>
+              )}
+            </View>
+          </View>
+        </Modal>
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+  },
+
   container: {
     flex: 1,
-    backgroundColor: "#FDEFD0",
   },
   // Header styles
   header: {

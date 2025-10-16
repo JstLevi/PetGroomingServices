@@ -1,20 +1,30 @@
 import React from "react";
-import { View, Text, Image, ScrollView, TouchableOpacity, StyleSheet, ImageBackground,} from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useFonts, LuckiestGuy_400Regular,} from "@expo-google-fonts/luckiest-guy";
+import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
 import { useRouter } from "expo-router";
 
 const Home = () => {
   const router = useRouter();
   const [fontsLoaded] = useFonts({
-        LuckiestGuy: LuckiestGuy_400Regular,
-      })
-    
-    if (!fontsLoaded) {
-      return <View><Text>Loading...</Text></View>
-    }
+    LuckiestGuy: LuckiestGuy_400Regular,
+  });
 
-  // Sample data for services
+  if (!fontsLoaded) {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
   const services = [
     { id: 1, name: "Basic Grooming", icon: "cut", price: "₱350" },
     { id: 2, name: "Flea & Tick Treatment", icon: "bug", price: "₱650" },
@@ -22,9 +32,7 @@ const Home = () => {
     { id: 4, name: "Teeth Cleaning", icon: "medical", price: "₱250" },
   ];
 
-  // Sample data for appointments
   const appointments = [
-    
     {
       id: 1,
       pet: "Bella (Poodle)",
@@ -43,27 +51,23 @@ const Home = () => {
 
   return (
     <ImageBackground
-      source={require("../../assets/images/homebg.jpg")}
+      source={require("../../assets/images/homebg.png")}
       style={styles.backgroundImage}
       resizeMode="cover"
     >
       <View style={styles.container}>
-        {/* Header with logo, title and notification icon */}
+        {/* Header */}
         <View style={styles.header}>
-          <Text
-            style={styles.pageTitle}>HOME
-          </Text>
-          <TouchableOpacity style={styles.notificationIcon} onPress={() => router.push("/notification")}>
-            <Ionicons name="notifications" size={26} color="#ffffffff" />
+          <Text style={styles.pageTitle}>HOME</Text>
+          <TouchableOpacity
+            style={styles.notificationIcon}
+            onPress={() => router.push("/notification")}
+          >
+            <Ionicons name="notifications" size={26} color="#fff" />
           </TouchableOpacity>
-                    
-
         </View>
 
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          style={styles.scrollView}
-        >
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
           {/* Promo Card */}
           <View style={styles.promoCard}>
             <Text style={styles.promoTitle}>SPECIAL OFFER</Text>
@@ -85,8 +89,7 @@ const Home = () => {
             {services.map((service) => (
               <View key={service.id} style={styles.serviceCard}>
                 <View style={styles.serviceIcon}>
-                  {/* Casting to "any" avoids TS redline */}
-                  <Ionicons name={service.icon as any} size={28} color="#4A90E2" />
+                  <Ionicons name={service.icon as any} size={28} color="#FF8C00" />
                 </View>
                 <Text style={styles.serviceName}>{service.name}</Text>
                 <Text style={styles.servicePrice}>{service.price}</Text>
@@ -139,23 +142,19 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
     backgroundColor: "#143470",
   },
-
   pageTitle: {
     fontSize: 28,
-    color: "#ffffffff",
+    color: "#fff",
     fontFamily: "LuckiestGuy",
-    textShadowColor: "rgba(0, 0, 0, 1)",
+    textShadowColor: "rgba(0,0,0,0.8)",
     textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 1,
-    letterSpacing: 1,
+    textShadowRadius: 2,
   },
-
   notificationIcon: {
     padding: 8,
   },
-
   promoCard: {
-    backgroundColor: "#4A90E2",
+    backgroundColor: "#FF8C00",
     margin: 16,
     padding: 20,
     borderRadius: 12,
@@ -179,14 +178,14 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   promoButton: {
-    backgroundColor: "#fff",
+    backgroundColor: "#FFD54F",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 20,
     alignSelf: "flex-start",
   },
   promoButtonText: {
-    color: "#4A90E2",
+    color: "#0d3683ff",
     fontWeight: "bold",
   },
   sectionTitle: {
@@ -194,7 +193,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginHorizontal: 16,
     marginVertical: 16,
-    color: "#2c3e50",
+    color: "#143470",
   },
   servicesContainer: {
     paddingLeft: 16,
@@ -219,7 +218,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: "#e8f4ff",
+    backgroundColor: "#FFF4E0",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 12,
@@ -275,7 +274,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   viewButtonText: {
-    color: "#ffffffff",
+    color: "#fff",
     fontWeight: "600",
   },
 });

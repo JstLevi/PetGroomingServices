@@ -22,8 +22,9 @@ export default function Booking() {
 
   return (
     <ImageBackground
-      // 🐾 background image with paw prints (optional)
-      style={styles.container}
+      source={require("../../assets/images/background.png")}
+      style={styles.backgroundImage}
+      resizeMode="cover"
     >
       {/* Header */}
       <View style={styles.header}>
@@ -34,7 +35,7 @@ export default function Booking() {
       </View>
 
       {/* Centered Main Content */}
-      <View style={styles.mainContent}>
+      <View style={styles.container}>
         {/* Title */}
         <Text style={styles.chooseText}>Choose a pet type</Text>
 
@@ -82,9 +83,10 @@ export default function Booking() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  backgroundImage: {
     flex: 1,
-    backgroundColor: "#FDEFD0",
+    width: "100%",
+    height: "100%",
   },
 
   header: {
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     padding: 8,
   },
 
-  mainContent: {
+  container: {
     flex: 1,
     alignItems: "center",
     marginTop: 150,
