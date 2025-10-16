@@ -129,14 +129,14 @@ const handleLogout = () => {
         </Tabs>
       </Animated.View>
 
-      {/* Dark overlay when menu is open */}
+      {/* Dark overlay if we click the menu */}
       {menuVisible && (
         <TouchableWithoutFeedback onPress={toggleMenu}>
           <View style={styles.overlay} />
         </TouchableWithoutFeedback>
       )}
 
-      {/* GLOBAL SIDE MENU */}
+      {/* SIDE MENU */}
       <Animated.View
         style={[styles.sideMenu, { transform: [{ translateX: menuTranslateX }] }]}
       >
@@ -147,7 +147,10 @@ const handleLogout = () => {
             <Text style={styles.menuItem}>My Appointments</Text>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Text style={styles.menuItem}>Terms and Conditions</Text>
+            <Text style={styles.menuItem}>Help/Support</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.menuItem}>About Us</Text>
           </TouchableOpacity>
           <TouchableOpacity>
             <Text style={styles.menuItem}>Settings</Text>

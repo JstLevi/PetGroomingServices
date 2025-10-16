@@ -23,3 +23,4 @@ export const MenuProvider = ({ children }: { children: React.ReactNode }) => {
     </MenuContext.Provider>
   );
 };
+export default () => null;
