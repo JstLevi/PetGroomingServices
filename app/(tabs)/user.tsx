@@ -39,7 +39,7 @@ export default function ProfileScreen() {
               style={styles.avatar}
             />
             <Text style={styles.name}>Phil Josh Burlat</Text>
-            <Text style={styles.email}>levi@example.com</Text>
+            <Text style={styles.email}>levi@yahoo.com</Text>
             <TouchableOpacity style={styles.editBtn}>
               <Text style={styles.editText}>Edit Profile</Text>
             </TouchableOpacity>
@@ -176,10 +176,23 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 
-  editText: { color: "#fff", fontWeight: "600" },
+  editText: { 
+    color: "#fff", 
+    fontWeight: "600" 
+  },
 
-  section: { paddingHorizontal: 20, marginBottom: 25 },
-  sectionTitle: { fontSize: 18, fontWeight: "700", marginBottom: 10 },
+  section: { 
+    paddingHorizontal: 20, 
+    marginBottom: 25
+  },
+
+  sectionTitle: { 
+    fontSize: 18, 
+    fontWeight: "700", 
+    marginBottom: 10 
+  },
+
+
 
   petCard: {
     backgroundColor: "#fff",
@@ -197,8 +210,14 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
 
-  petName: { fontWeight: "700", marginTop: 3 },
-  petBreed: { fontSize: 12, color: "#777" },
+  petName: { 
+    fontWeight: "700", 
+    marginTop: 3 
+  },
+  petBreed: { 
+    fontSize: 12, 
+    color: "#777" 
+  },
 
   addPetBtn: {
     backgroundColor: "#FFD180",
@@ -209,9 +228,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
 
-  addText: { color: "#333", fontWeight: "600" },
+  addText: { 
+    color: "#333", 
+    fontWeight: "600" 
+  },
 
   /** --- MY PHOTOS --- **/
+
   photoFrameContainer: {
     backgroundColor: "#D6D1C9", // similar to your sample beige-gray
     borderWidth: 1,
@@ -223,7 +246,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 3,
     elevation: 4,
-    height: 420,
+    height: 355,
+    marginBottom: 70,
   },
 
   photoGrid: {
