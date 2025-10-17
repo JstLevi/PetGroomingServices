@@ -144,12 +144,9 @@ const handleLogout = () => {
           <Text style={styles.menuHeader}>Menu</Text>
           <View style={styles.line} />
           <TouchableOpacity>
-            <Text style={styles.menuItem}>My Appointments</Text>
-          </TouchableOpacity>
-          <TouchableOpacity>
             <Text style={styles.menuItem}>Help/Support</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => router.push("/aboutUs")}>
             <Text style={styles.menuItem}>About Us</Text>
           </TouchableOpacity>
           <TouchableOpacity>

@@ -27,8 +27,8 @@ export default function Index() {
   const [showUnderline, setShowUnderline] = useState(false);
   const [showButton, setShowButton] = useState(false);
 
-  // 🔥 Logo Animation (will only start after delay)
-  const scale = useSharedValue(0); // Start invisible
+  // Logo Animation (will only start after delay)
+  const scale = useSharedValue(0); 
 
   useEffect(() => {
     // Delay logo pop until after "Welcome to.." shows
@@ -44,7 +44,7 @@ export default function Index() {
           );
         })
       );
-    }, 1600); // Adjust this delay to sync with your Welcome text
+    }, 3100); // Adjust this delay to sync with your Welcome text
   }, []);
 
   const animatedLogo = useAnimatedStyle(() => ({
@@ -71,10 +71,10 @@ export default function Index() {
     };
 
     typeText(setWelcomeText, "Welcome to..", 0);
-    typeText(setTitleText, "HAPPY PAWS", 1800, () => {
-      setTimeout(() => setShowUnderline(true), 500);
+    typeText(setTitleText, "HAPPY PAWS", 3800, () => {
+      setTimeout(() => setShowUnderline(true), 800);
     });
-    typeText(setSubtitleText, "Happy Pet, Happy Owner", 4000, () => {
+    typeText(setSubtitleText, "Happy Pet, Happy Owner", 6000, () => {
       setTimeout(() => setShowButton(true), 10);
     });
   }, []);
@@ -197,16 +197,17 @@ const styles = StyleSheet.create({
     marginTop: -45,
   },
   underline: {
-    width: 270,
+    width: 295,
     height: 4,
     backgroundColor: "#ffffff",
     borderRadius: 2,
-    marginTop: 4,
+    marginTop: -3,
   },
   subtitle: {
     color: "#fff",
     fontSize: 18,
     opacity: 0.9,
+    marginTop: 10,
     marginBottom: 100,
   },
   buttonContainer: { position: "absolute", bottom: 80 },
