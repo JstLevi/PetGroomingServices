@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
   },
   appointmentsTable: {
     marginHorizontal: 16,
-    marginBottom: 30,
+    marginBottom: 100,
   },
   appointmentRow: {
     flexDirection: "row",
