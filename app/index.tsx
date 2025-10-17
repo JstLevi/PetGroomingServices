@@ -4,41 +4,79 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Dimensions,
   Image,
 } from "react-native";
 import { Link } from "expo-router";
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import { MotiView, MotiImage, MotiText } from "moti";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withRepeat,
+  withTiming,
+  withSequence,
+} from "react-native-reanimated";
+import { MotiView, MotiText } from "moti";
 import { LinearGradient } from "expo-linear-gradient";
-
-const { width, height } = Dimensions.get("window");
+import { Easing } from "react-native-reanimated";
 
 export default function Index() {
   const [fontsLoaded] = useFonts({ LuckiestGuy_400Regular });
   const [welcomeText, setWelcomeText] = useState("");
   const [titleText, setTitleText] = useState("");
   const [subtitleText, setSubtitleText] = useState("");
-  const [pressed, setPressed] = useState(false);
+  const [showUnderline, setShowUnderline] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+
+  // 🔥 Logo Animation (will only start after delay)
+  const scale = useSharedValue(0); // Start invisible
+
+  useEffect(() => {
+    // Delay logo pop until after "Welcome to.." shows
+    setTimeout(() => {
+      scale.value = withSequence(
+        withTiming(1.2, { duration: 800, easing: Easing.out(Easing.exp) }), // POP + BOING
+        withTiming(1, { duration: 500, easing: Easing.out(Easing.ease) }, () => {
+          // After bounce, start breathing effect forever
+          scale.value = withRepeat(
+            withTiming(1.05, { duration: 2000, easing: Easing.inOut(Easing.ease) }),
+            -1,
+            true
+          );
+        })
+      );
+    }, 1600); // Adjust this delay to sync with your Welcome text
+  }, []);
+
+  const animatedLogo = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
 
   useEffect(() => {
     const typeText = (
       setter: React.Dispatch<React.SetStateAction<string>>,
       message: string,
-      delay = 0
+      delay = 0,
+      onFinish?: () => void
     ) => {
       let i = 0;
       setTimeout(() => {
         const interval = setInterval(() => {
           setter(message.slice(0, i++));
-          if (i > message.length) clearInterval(interval);
+          if (i > message.length) {
+            clearInterval(interval);
+            if (onFinish) onFinish();
+          }
         }, 100);
       }, delay);
     };
 
     typeText(setWelcomeText, "Welcome to..", 0);
-    typeText(setTitleText, "HAPPY PAWS", 1800);
-    typeText(setSubtitleText, "Happy Pet, Happy Owner", 3500);
+    typeText(setTitleText, "HAPPY PAWS", 1800, () => {
+      setTimeout(() => setShowUnderline(true), 500);
+    });
+    typeText(setSubtitleText, "Happy Pet, Happy Owner", 4000, () => {
+      setTimeout(() => setShowButton(true), 10);
+    });
   }, []);
 
   if (!fontsLoaded) {
@@ -67,7 +105,7 @@ export default function Index() {
         </MotiView>
       </View>
 
-      {/* Typing text animations */}
+      {/* Welcome Text */}
       <MotiText
         from={{ opacity: 0, translateY: -20 }}
         animate={{ opacity: 1, translateY: 0 }}
@@ -77,58 +115,44 @@ export default function Index() {
         {welcomeText}
       </MotiText>
 
-      {/* Logo breathing animation */}
-      <MotiView
-        from={{ opacity: 0, scale: 0.7 }}
-        animate={{
-          opacity: 1,
-          scale: [1, 1.07, 1],
-        }}
-        transition={{
-          type: "timing",
-          duration: 1300,
-          loop: true,
-        }}
-        style={styles.logoContainer}
-      >
+      {/* 🐾 Delayed Pop + Bounce + Breathing Logo */}
+      <Animated.View style={[styles.logoContainer, animatedLogo]}>
         <Image
-          source={require("../assets/images/logo (2).png")}
+          source={require("../assets/images/logo (1).png")}
           style={styles.logo}
+          resizeMode="contain"
         />
-      </MotiView>
+      </Animated.View>
 
-      {/* Static logo text and underline */}
+      {/* Logo Text + Underline */}
       <View style={styles.textContainer}>
         <Text style={styles.logoText}>{titleText}</Text>
-        <View style={styles.underline} />
+        {showUnderline && <View style={styles.underline} />}
       </View>
 
+      {/* Subtitle */}
       <Text style={styles.subtitle}>{subtitleText}</Text>
 
       {/* Button */}
-      <MotiView
-        from={{ opacity: 0, translateY: 50 }}
-        animate={{ opacity: 1, translateY: 0 }}
-        transition={{ delay: 4500, duration: 800 }}
-        style={styles.buttonContainer}
-      >
-        <Link href="/login" asChild>
-          <TouchableOpacity
-            activeOpacity={1}
-            onPressIn={() => setPressed(true)}
-            onPressOut={() => setPressed(false)}
-          >
-            <MotiView
-              from={{ scale: 1 }}
-              animate={{ scale: pressed ? 0.9 : 1 }}
-              transition={{ type: "spring" }}
-              style={styles.getStartBtn}
-            >
+      {showButton && (
+        <MotiView
+          from={{ opacity: 0, translateY: 100 }}
+          animate={{ opacity: 1, translateY: 0 }}
+          transition={{
+            type: "spring",
+            damping: 10,   // lower = bouncier
+            stiffness: 100,
+            delay: 900
+          }}
+          style={styles.buttonContainer}
+        >
+          <Link href="/login" asChild>
+            <TouchableOpacity style={styles.getStartBtn}>
               <Text style={styles.getStartText}>Get Started</Text>
-            </MotiView>
-          </TouchableOpacity>
-        </Link>
-      </MotiView>
+            </TouchableOpacity>
+          </Link>
+        </MotiView>
+      )}
     </View>
   );
 }
@@ -152,18 +176,11 @@ const styles = StyleSheet.create({
   logoContainer: {
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "#F3C65D",
-    shadowRadius: 30,
-    shadowOffset: { width: 0, height: 0 },
     marginBottom: 0,
   },
   logo: {
-    width: 180,
-    height: 180,
-    borderRadius: 100,
-    borderWidth: 2,
-    borderColor: "#000",
-    backgroundColor: "#F3C65D",
+    width: 208,
+    height: 193,
   },
   textContainer: {
     alignItems: "center",
@@ -197,7 +214,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F7941D",
     paddingHorizontal: 40,
     paddingVertical: 14,
-    borderRadius: 12,
+    borderRadius: 6,
     elevation: 5,
     shadowColor: "#000",
     shadowOpacity: 0.3,
