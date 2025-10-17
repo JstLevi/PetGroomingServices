@@ -8,7 +8,7 @@ import { useState } from "react";
 
 
 
-const login = () => {
+export default function login () {
 
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -37,7 +37,6 @@ const login = () => {
       <View style={styles.logo_container}>
         <Image source={require("../assets/images/logo.png")}width={208} height={193} />
           <View style={{ position: "relative" }}>
-            <Text style={[styles.logoText, styles.textOutline]}>HAPPY PAWS</Text>
             <Text style={styles.logoText}>HAPPY PAWS</Text>
           </View>
         <View style={[styles.underline, styles.underlineOutline]} />
@@ -117,23 +116,18 @@ const styles = StyleSheet.create({
   logoText: {
     color: "white",
     fontSize: 40,
-    fontFamily: "LuckiestGuy",
-    marginTop: -45,
+    fontFamily: "LuckiestGuy_400Regular",
     elevation: 10,
     textShadowColor: "rgba(0, 0, 0, 1)",
-    textShadowOffset: { width: 2, height: 3 }, 
-    textShadowRadius: 3,
+    textShadowOffset: { width: 1.5, height: 5 },
+    textShadowRadius: 1,
+    letterSpacing: 1,
+    marginTop: -45,
   },
-
-  textOutline: {
-  right: 2,
-  top: 15,
-  color: "black",
- },
 
 
   underline: {
-    width: "70%",     
+    width: "80%",     
     height: 4,   
     backgroundColor: "#fcfcfcff",   
     marginTop: -7.5, 
@@ -142,11 +136,11 @@ const styles = StyleSheet.create({
   },
 
   underlineOutline: {
-    width: "69%",  
+    width: "79%",  
     height: 4,  
     backgroundColor: "#000000be",
     borderRadius: 12,
-    marginTop: 8, 
+    marginTop: 2, 
   },
 
 
@@ -202,4 +196,3 @@ const styles = StyleSheet.create({
 
 
 
-export default login

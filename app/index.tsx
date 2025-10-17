@@ -58,7 +58,7 @@ export default function Index() {
 
     typeText(setWelcomeText, "Welcome to..", 0);
     typeText(setTitleText, "HAPPY PAWS", 3800, () => {
-      setTimeout(() => setShowUnderline(true), 800);
+      setTimeout(() => setShowUnderline(true), 0);
     });
     typeText(setSubtitleText, "Happy Pet, Happy Owner", 6000, () => {
       setTimeout(() => setShowButton(true), 10);
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   },
   logoText: {
     fontSize: 40,
-    color: "#fff",
+    color: "white",
     fontFamily: "LuckiestGuy_400Regular",
     textShadowColor: "rgba(0, 0, 0, 1)",
     textShadowOffset: { width: 1.5, height: 5 },
@@ -166,6 +166,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     marginTop: -45,
   },
+
   underline: {
     width: 295,
     height: 4,
