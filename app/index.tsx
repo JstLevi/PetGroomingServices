@@ -1,22 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import {  View,  Text, StyleSheet, TouchableOpacity, Image,} from "react-native";
 import { Link } from "expo-router";
 import { useFonts, LuckiestGuy_400Regular } from "@expo-google-fonts/luckiest-guy";
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withRepeat,
-  withTiming,
-  withSequence,
-} from "react-native-reanimated";
+import Animated, {  useSharedValue,  useAnimatedStyle,  withRepeat,  withTiming,  withSequence,} from "react-native-reanimated";
 import { MotiView, MotiText } from "moti";
-import { LinearGradient } from "expo-linear-gradient";
 import { Easing } from "react-native-reanimated";
 
 export default function Index() {
@@ -27,7 +14,6 @@ export default function Index() {
   const [showUnderline, setShowUnderline] = useState(false);
   const [showButton, setShowButton] = useState(false);
 
-  // Logo Animation (will only start after delay)
   const scale = useSharedValue(0); 
 
   useEffect(() => {
@@ -44,7 +30,7 @@ export default function Index() {
           );
         })
       );
-    }, 3100); // Adjust this delay to sync with your Welcome text
+    }, 3100); 
   }, []);
 
   const animatedLogo = useAnimatedStyle(() => ({
@@ -89,22 +75,6 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      {/* Animated gradient background */}
-      <View style={StyleSheet.absoluteFill}>
-        <MotiView
-          from={{ opacity: 0.8 }}
-          animate={{ opacity: [0.8, 1, 0.8] }}
-          transition={{ loop: true, duration: 4000 }}
-        >
-          <LinearGradient
-            colors={["#143470", "#1E3A8A", "#143470"]}
-            style={{ flex: 1 }}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-          />
-        </MotiView>
-      </View>
-
       {/* Welcome Text */}
       <MotiText
         from={{ opacity: 0, translateY: -20 }}
